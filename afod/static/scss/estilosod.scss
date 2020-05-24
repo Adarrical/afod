@@ -1,0 +1,62 @@
+//-----------------------------
+//      PATRON DE COLORES
+//-----------------------------
+
+$secundario: #183483;
+$principal:  red;
+
+$principal1 : #87b9f3;
+
+html{
+  font-size: 13px;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: $secundario;
+}
+
+.bg-secondary{
+  background-color: $secundario !important;
+}
+
+.btn-primary{
+  background-color: $secundario;
+  border-color: $principal1 !important; 
+}
+
+.btn-secondary{
+  background-color: $principal1;
+  border-color: $secundario !important; 
+}
+
+.bg-dark {
+  background-color: $secundario !important;
+}
+
+.table-fixed tbody{
+  height: 450px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+    float: left;
+    position: relative;
+
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}

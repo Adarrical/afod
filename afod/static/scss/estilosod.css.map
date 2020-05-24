@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAQA,UAAU;EAAC,MAAM,EAAC,IAAI;;AAEtB,IAAK;EACD,gBAAgB,EAAE,kDAAyD;;AAG/E,gBAAgB;EACd,KAAK,EAVM,OAAO",
+"sources": ["estilosod.scss"],
+"names": [],
+"file": "estilosod.css"
+}

@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block menuactivate %}
+<li class="nav-item deactive"><a href="{% url 'miembro_listar'%}" class="nav-link"  >Miembros</a></li>
+<li class="nav-item active"><a href="{% url 'crear_cuota' %}" class="nav-link" >Cuotas</a></li>
+<li class="nav-item deactive"><a href="#" class="nav-link">Pagos</a></li>
+{%endblock%}
+
+{% block content%}
+<div class="container">
+    <form action="" method="post">
+        {%csrf_token%}
+        <div cLass="h4">
+            <p> ¿Estás seguro de que quieres eliminar la aportación de {{object}}? </p>
+            <input class="btn btn-danger btn-lg" type="submit" value="Si"/>
+            <a href="{{ view.get_success_url}}" class="btn btn-primary btn-lg">No</a> 
+         </div>
+    </form>
+</div>
+{% endblock %}
+

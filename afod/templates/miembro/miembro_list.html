@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block menuactivate %}
+<li class="nav-item active"><a href="{% url 'miembro_listar' %}" class="nav-link"  >Miembros</a></li>
+<li class="nav-item deactive"><a href="{% url 'crear_cuota' %}" class="nav-link" >Cuotas</a></li>
+<li class="nav-item deactive"><a href="{% url 'pagos_listar' %}" class="nav-link">Pagos</a></li>
+{%endblock%}
+
+
+{%block content%}
+<form class="form-inline"  action="create" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <a class="btn btn-sm btn-secondary" href="{% url 'miembro_crear' %}">
+      <img border="0" alt="" src="{% static 'images/nuevo.png' %}" width="15%" > Ingresar nuevos miembros
+    </a> 
+  </div>
+</form>
+
+<div class="table-responsive ">
+<table class="table table-fixed">
+  <thead>
+    <tr>
+      <th scope="row" class="col-12 col-sm-2 col-md-1 col-lg-1">#</th>
+      <th scope="col" class="col-12 col-sm-2 col-md-2 col-lg-1">Nick OD</th>
+      <th scope="col" class="col-12 col-sm-2 col-md-2 col-lg-1">Nombre</th>
+      <th scope="col" class="d-none d-lg-table-cell col-lg-1">Apellidos</th>
+      <th scope="col" class="d-none d-md-table-cell col-md-2 col-lg-2">Mail</th>
+      <th scope="col" class="d-none d-md-table-cell col-md-1 col-lg-1">Teléfono</th>
+      <th scope="col" class="d-none d-lg-table-cell col-lg-1">Fecha Inscripción</th>
+      <th scope="col" class="d-none d-lg-table-cell col-lg-1">Tipo</th>
+      <th scope="col" class="d-none d-lg-table-cell col-lg-1">C.P.</th>
+      <th scope="col" class="d-none d-lg-table-cell col-lg-1">Localidad</th>
+      <th scope="col" class="col-12 col-sm-6 col-md-4 col-lg-1">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if object_list %}
+    {% for miembro in object_list%}  
+    <tr>
+      <th scope="row" class="col-12 col-sm-2 col-md-1 col-lg-1">{{miembro.id}}</td>
+      <td colspan="2" class="col-12 col-sm-2 col-md-2 col-lg-1"> {{miembro.nik_od}}</td>
+      <td colspan="2" class="col-12 col-sm-2 col-md-2 col-lg-1"> {{miembro.nombre}}</td>
+      <td colspan="2" class="d-none d-lg-table-cell col-lg-1">{{miembro.apellidos}}</td>
+      <td colspan="2" class="d-none d-md-table-cell col-md-2 col-lg-2">{{miembro.email}}</td>
+      <td colspan="2" class="d-none d-md-table-cell col-md-1 col-lg-1">{{miembro.telefono}}</td>
+      <td colspan="2" class="d-none d-lg-table-cell col-lg-1">{{miembro.fecha_inscripcion}}</td>
+      <td colspan="2" class="d-none d-lg-table-cell col-lg-1">{{miembro.tipo_miembro}}</td>
+      <td colspan="2" class="d-none d-lg-table-cell col-lg-1">{{miembro.codigo_postal}}</td>
+      <td colspan="2" class="d-none d-lg-table-cell col-lg-1">{{miembro.localidad}}</td>
+      <td colspan="2" class="col-12 col-sm-6 col-md-4 col-lg-1"> 
+        
+          <a class="btn btn-sm btn-secondary" href="{% url 'miembro_modificar' pk=miembro.id %}">
+            <img border="0" alt="Editar" src="{% static 'images/editar.png' %}" width="20" height="20">Editar   
+          </a> 
+          <a class="btn btn-sm btn-danger" href="{% url 'miembro_borrar' pk=miembro.id %}">
+            <img border="0" alt="Borrar" src="{% static 'images/remove.png' %}" width="20" height="20">Borrar 
+          </a>
+          <a class="btn btn-sm btn-success" href="{% url 'miembro_historial' pk=miembro.id %}">
+            <img border="0" alt="Historial" src="{% static 'images/historial.png' %}" width="20" height="20">Historial
+          </a>
+        
+    </td>
+    </tr>
+    <i class="far fa-edit"></i>
+    {%endfor %}
+    
+    {% else %}
+    <h1>No hay miembros en la Asociación </h1>
+    {% endif %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
+
+

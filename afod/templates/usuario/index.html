@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{%block header%}
+<div class="container">
+    <h3 class="m-5 p-3">Bienvenido a la gestión de socios.</h3>
+  </div>
+{% endblock %}
+
+{% block content%}
+<div class="container">
+<form method="POST" class="form-horizontal">
+    {%csrf_token%}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+                {{form.username | as_crispy_field}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+               {{form.password | as_crispy_field}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+                <a href="">Olvidé mi contraseña</a>
+                <input class="btn btn-primary" type="submit" value="Ingresar">
+            </div>
+        </div>
+    </div>
+
+</form>
+</div>
+{% endblock %}

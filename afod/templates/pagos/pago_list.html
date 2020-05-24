@@ -1,0 +1,64 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block menuactivate %}
+<li class="nav-item deactive"><a href="{% url 'miembro_listar'%}" class="nav-link"  >Miembros</a></li>
+<li class="nav-item deactive"><a href="{% url 'crear_cuota' %}" class="nav-link" >Cuotas</a></li>
+<li class="nav-item active"><a href="{% url 'pagos_listar' %}" class="nav-link">Pagos</a></li>
+{%endblock%}
+
+
+{%block content%}
+<form class="form-inline"  action="create" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <a class="btn btn-sm btn-secondary" href="nuevo">
+      <img border="0" alt="" src="{% static 'images/nuevo.png' %}" width="15%" > Anotar nuevo pago
+    </a> 
+  </div>
+</form>
+
+<div class="table-responsive ">
+<table class="table table-fixed">
+  <thead>
+    <tr>
+      <th scope="row" class="col-md-1">#</th>
+      <th scope="col" class="col-md-3">Concepto</th>
+      <th scope="col" class="col-md-2">Fecha</th>
+      <th scope="col" class="col-md-1">Tipo</th>
+      <th scope="col" class="col-md-2">Importe</th>
+      <th scope="col" class="col-md-3">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if object_list %}
+    {% for pago in object_list%}  
+    <tr>
+      <th scope="row" class="col-md-1">{{pago.id}}</td>
+      <td colspan="2" class="col-md-3"> {{pago.concepto}}</td>
+      <td colspan="2" class="col-md-2"> {{pago.fecha_pago}}</td>
+      <td colspan="2" class="col-md-1">{{pago.tipo_pago}}</td>
+      <td colspan="2" class="col-md-2">{{pago.importe}}</td>
+      <td colspan="2" class="col-md-3"> 
+        
+          <a class="btn btn-sm btn-secondary" href="{{ pago.id }}/modificar">
+            <img border="0" alt="Editar" src="{% static 'images/editar.png' %}" width="20" height="20">Editar   
+          </a> 
+          <a class="btn btn-sm btn-danger" href="{{ pago.id }}/borrar">
+            <img border="0" alt="Borrar" src="{% static 'images/remove.png' %}" width="20" height="20">Borrar 
+          
+    </td>
+    </tr>
+    <i class="far fa-edit"></i>
+    {%endfor %}
+    
+    {% else %}
+    <h1>No hay pagos efectuados </h1>
+    {% endif %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
+
+

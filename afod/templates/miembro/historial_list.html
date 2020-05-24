@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block menuactivate %}
+<li class="nav-item deactive"><a href="{% url 'miembro_listar'%}" class="nav-link"  >Miembros</a></li>
+<li class="nav-item active"><a href="{% url 'crear_cuota' %}" class="nav-link" >Cuotas</a></li>
+<li class="nav-item deactive"><a href="{% url 'pagos_listar' %}" class="nav-link">Pagos</a></li>
+{%endblock%}
+
+
+{%block content%}
+
+<form class="form-inline"  action="create" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <p class="h3">
+       Aportaciones efectuadas por {{nombre_miembro}} 
+    </p>
+    
+  </div>
+</form>
+
+<a class="btn btn-sm btn-secondary" href="cuota">
+  <img border="0" alt="" src="{% static 'images/nuevo.png' %}" width="15%" > Nueva aportación
+</a>
+
+<div class="table-responsive-lg">
+<table class="table table-fixed">
+  <thead>
+    <tr>
+      <th scope="row" class="col-12 col-sm-2">#</th>
+      <th scope="col" class="col-12 col-sm-3">Fecha cobro</th>
+      <th scope="col" class="col-12 col-sm-2">Tipo</th>
+      <th scope="col" class="col-12 col-sm-2">Importe</th>
+      <th scope="col" class="col-12 col-sm-3" >Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if object_list %}
+    {% for ingreso in object_list%}  
+    <tr>
+      <th scope="row" class="col-12 col-sm-2">{{ingreso.id}}</td>
+      <td colspan="2" class="col-12 col-sm-3">{{ingreso.fecha_cobro}}</td>
+      <td colspan="2" class="col-12 col-sm-2">{{ingreso.tipo_cobro}}</td>
+      <td colspan="2" class="col-12 col-sm-2">{{ingreso.importe}}</td>
+      <td colsapn="2" class="col-12 col-sm-3">
+        
+          <a class="btn btn-sm btn-secondary" href="cuota/{{ingreso.id}}">
+            <img border="0" alt="" src="{% static 'images/editar.png' %}" width="20" height="20"> Editar
+          </a> 
+          <a class="btn btn-sm btn-danger" href="cuota/{{ingreso.id}}/borrar">
+            <img border="0" alt="" src="{% static 'images/remove.png' %}" width="20" height="20"> Borrar
+          </a>
+       
+    </td>
+    </tr>
+    <i class="far fa-edit"></i>
+    {%endfor %}
+    
+    {% else %}
+    <h3>No hay ningún cobro de {{nombre_miembro}} </h3>
+    {% endif %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock %}

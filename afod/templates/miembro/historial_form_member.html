@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block menuactivate %}
+<li class="nav-item activate"><a href="{% url 'miembro_listar'%}" class="nav-link"  >Miembros</a></li>
+<li class="nav-item deactive"><a href="{% url 'crear_cuota' %}" class="nav-link" >Cuotas</a></li>
+<li class="nav-item deactive"><a href="{% url 'pagos_listar' %}" class="nav-link">Pagos</a></li>
+{%endblock%}
+
+
+
+{% block content%}
+<div class="container">
+  <form method = "POST" class="form-horizontal">
+      {%csrf_token%}
+      {{form.tipo_cobro|as_crispy_field}}
+      {{form.fecha_cobro|as_crispy_field}}
+      {{form.importe|as_crispy_field}}
+      
+      <input class="btn btn-primary btn-lg" type="submit" value="Guardar"/>
+      <a href="{{ view.get_success_url}}" class="btn btn-primary btn-lg">Cancel</a> 
+  </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+html {
+  font-size: 13px; }
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #183483; }
+
+.bg-secondary {
+  background-color: #183483 !important; }
+
+.btn-primary {
+  background-color: #183483;
+  border-color: #87b9f3 !important; }
+
+.btn-secondary {
+  background-color: #87b9f3;
+  border-color: #183483 !important; }
+
+.bg-dark {
+  background-color: #183483 !important; }
+
+.table-fixed tbody {
+  height: 450px;
+  overflow-y: auto;
+  width: 100%; }
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+  display: block; }
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+  float: left;
+  position: relative; }
+  .table-fixed tbody td::after,
+  .table-fixed tbody th::after,
+  .table-fixed thead > tr > th::after {
+    content: '';
+    clear: both;
+    display: block; }
+
+/*# sourceMappingURL=estilosod.css.map */
